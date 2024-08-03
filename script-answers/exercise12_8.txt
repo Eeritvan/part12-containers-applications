@@ -1,0 +1,70 @@
+Script started on 2024-08-01 16:23:21+03:00 [TERM="xterm-256color" TTY="/dev/pts/8" COLUMNS="113" LINES="55"]
+[?2004h]0;eeritvan@DESKTOP-BK4PII7: ~/part12-containers-applications/script-answers[01;32meeritvan@DESKTOP-BK4PII7[00m:[01;34m~/part12-containers-applications/script-answers[00m$ docker exec -i todo-backend-mongo-1 bas 
+h
+[?2004l
+mongosh -u root -p example
+Current Mongosh Log ID:	66ab8c682e193999c5149f47
+Connecting to:		mongodb://<credentials>@127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.10
+Using MongoDB:		7.0.12
+Using Mongosh:		2.2.10
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-08-01T12:51:42.990+00:00: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine. See http://dochub.mongodb.org/core/prodnotes-filesystem
+   2024-08-01T12:51:43.631+00:00: /sys/kernel/mm/transparent_hugepage/enabled is 'always'. We suggest setting it to 'never' in this binary version
+   2024-08-01T12:51:43.631+00:00: vm.max_map_count is too low
+------
+
+test> show dbs
+admin         100.00 KiB
+config        108.00 KiB
+local          72.00 KiB
+the_database   72.00 KiB
+test> use the_database
+switched to db the_database
+the_database> show collections
+todos
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('66ab84dd50e9c87c7c149f48'),
+    text: 'qwerty',
+    done: true
+  },
+  {
+    _id: ObjectId('66ab84dd50e9c87c7c149f49'),
+    text: 'Learn about containers',
+    done: false
+  }
+]
+the_database> db.todos.insertOne({ text: "Increase the number of tools in my tool belt", done: false })
+{
+  acknowledged: true,
+  insertedId: ObjectId('66ab8cb82e193999c5149f48')
+}
+the_database> db.todos.find({})
+[
+  {
+    _id: ObjectId('66ab84dd50e9c87c7c149f48'),
+    text: 'qwerty',
+    done: true
+  },
+  {
+    _id: ObjectId('66ab84dd50e9c87c7c149f49'),
+    text: 'Learn about containers',
+    done: false
+  },
+  {
+    "_id": "66ab8cb82e193999c5149f48",
+    "text": "Increase the number of tools in my tool belt",
+    "done": false
+  }
+]
+the_database> ^C
+[?2004h]0;eeritvan@DESKTOP-BK4PII7: ~/part12-containers-applications/script-answers[01;32meeritvan@DESKTOP-BK4PII7[00m:[01;34m~/part12-containers-applications/script-answers[00m$ exit
+[?2004l
+exit
+
+Script done on 2024-08-01 16:25:23+03:00 [COMMAND_EXIT_CODE="130"]
